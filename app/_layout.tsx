@@ -1,3 +1,7 @@
+import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
+import { useColorScheme } from "@/components/useColorScheme";
+import { Orbitron_400Regular, Orbitron_900Black } from "@expo-google-fonts/orbitron";
+import { Raleway_400Regular } from "@expo-google-fonts/raleway";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import {
   DarkTheme,
@@ -5,17 +9,16 @@ import {
   ThemeProvider,
 } from "@react-navigation/native";
 import { useFonts } from "expo-font";
+import { Slot } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useState } from "react";
-import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
-import { useColorScheme } from "@/components/useColorScheme";
-import { Slot } from "expo-router";
 
-import "../global.css";
+import "@/global.css";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export {
   // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
+  ErrorBoundary
 } from "expo-router";
 
 // export const unstable_settings = {
@@ -28,7 +31,9 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    Orbitron_400Regular,
+    Orbitron_900Black,
+    Raleway_400Regular,
     ...FontAwesome.font,
   });
 
@@ -57,6 +62,7 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   return (
     <GluestackUIProvider mode={colorScheme === "dark" ? "dark" : "light"}>
