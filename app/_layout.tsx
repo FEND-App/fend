@@ -1,7 +1,8 @@
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 import { useColorScheme } from "@/components/useColorScheme";
+import { ClerkProvider } from "@clerk/clerk-expo";
 import { Orbitron_400Regular, Orbitron_900Black } from "@expo-google-fonts/orbitron";
-import { Raleway_400Regular } from "@expo-google-fonts/raleway";
+import { Raleway_400Regular, Raleway_600SemiBold, Raleway_700Bold } from "@expo-google-fonts/raleway";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import {
   DarkTheme,
@@ -11,10 +12,12 @@ import {
 import { useFonts } from "expo-font";
 import { Slot } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
+import { tokenCache } from "@/cache";
+
+import LoadingScreen from "@/components/LoadingScreen";
 
 import "@/global.css";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -34,6 +37,8 @@ export default function RootLayout() {
     Orbitron_400Regular,
     Orbitron_900Black,
     Raleway_400Regular,
+    Raleway_600SemiBold,
+    Raleway_700Bold,
     ...FontAwesome.font,
   });
 
@@ -49,26 +54,28 @@ export default function RootLayout() {
     }
   }, [loaded]);
 
-  // useLayoutEffect(() => {
-  //   setStyleLoaded(true);
-  // }, [styleLoaded]);
+  useLayoutEffect(() => {
+    setStyleLoaded(true);
+  }, [styleLoaded]);
 
-  // if (!loaded || !styleLoaded) {
-  //   return null;
-  // }
+  if (!loaded || !styleLoaded) {
+    return <LoadingScreen />;
+  }
 
   return <RootLayoutNav />;
 }
 
 function RootLayoutNav() {
+  const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!;
   const colorScheme = useColorScheme();
-  const insets = useSafeAreaInsets();
 
   return (
-    <GluestackUIProvider mode={colorScheme === "dark" ? "dark" : "light"}>
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Slot />
-      </ThemeProvider>
-    </GluestackUIProvider>
+    <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
+      <GluestackUIProvider mode={colorScheme === "dark" ? "dark" : "light"} >
+        <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+          <Slot />
+        </ThemeProvider>
+      </GluestackUIProvider>
+    </ClerkProvider >
   );
 }
