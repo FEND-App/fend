@@ -1,16 +1,14 @@
 import { Tabs } from 'expo-router/tabs';
 import { useColorScheme } from 'react-native';
 
-import HomeIcon from "@/assets/Icons/Home"
-import QRCodeIcon from "@/assets/Icons/QRCode"
-import { Box } from '@/components/ui/box';
+import HomeIcon from "@/assets/Icons/Home";
+import QRCodeIcon from "@/assets/Icons/QRCode";
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-
-export default function Layout() {
-
-  const theme = useColorScheme() ?? "light";
+export default function HomeLayout() {
   const insets = useSafeAreaInsets();
+  const theme = useColorScheme();
+  console.log("Theme: ", theme);
   const iconProps = {
     color: theme === "light" ? "#15313e" : "#d9dbdb",
     width: 36,
@@ -26,6 +24,10 @@ export default function Layout() {
         backgroundColor: theme === "light" ? "d9dbdb" : "#15313e",
         paddingTop: 12
       },
+      sceneStyle: {
+        paddingTop: insets.top,
+        backgroundColor: theme === "light" ? "#d9dbdb" : "#15313e"
+      }
     }}>
       <Tabs.Screen
         name='index'
