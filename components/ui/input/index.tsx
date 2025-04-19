@@ -104,7 +104,7 @@ const inputFieldStyle = tva({
 type IInputProps = React.ComponentProps<typeof UIInput> &
   VariantProps<typeof inputStyle> & { className?: string };
 const Input = React.forwardRef<React.ElementRef<typeof UIInput>, IInputProps>(
-  ({ className, variant = 'outline', size = 'md', ...props }, ref) => {
+  ({ className, variant = 'outline', size = 'lg', ...props }, ref) => {
     return (
       <UIInput
         ref={ref}

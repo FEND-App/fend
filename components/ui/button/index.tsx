@@ -289,7 +289,7 @@ const Button = React.forwardRef<
   IButtonProps
 >(
   (
-    { className, variant = 'solid', size = 'md', action = 'primary', ...props },
+    { className, variant = 'solid', size = 'lg', action = 'primary', ...props },
     ref
   ) => {
     return (
