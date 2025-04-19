@@ -65,15 +65,15 @@ export default function SignUpScreen() {
 
   return (
     <FormControl>
-      <VStack className="flex items-center">
+      <VStack className="flex items-center w-full">
         <Heading className="font-bold">¡Bienvenido de vuelta!</Heading>
         <Text className="py-2 text-pretty text-center">Ingresa tus datos para continuar</Text>
         <signInForm.Field
           name="email"
           children={(field) => {
             return (
-              <VStack className="mt-4">
-                <Input className="w-full">
+              <VStack className="mt-4 w-full">
+                <Input>
                   <InputSlot className="pl-2">
                     <InputIcon as={MailIcon} />
                   </InputSlot>
@@ -87,13 +87,13 @@ export default function SignUpScreen() {
           name="password"
           children={(field) => {
             return (
-              <VStack className="mt-4">
-                <Input className="w-full rounded-md">
+              <VStack className="mt-4 w-full">
+                <Input className="">
                   <InputSlot className="pl-2">
                     <InputIcon as={LockIcon} />
                   </InputSlot>
-                  <InputField className="font-sans" id={field.name} type={showPassword} placeholder="Contraseña" value={field.state.value} onChangeText={field.handleChange} />
-                  <TouchableOpacity className="mx-2" onPress={() => setShowPassword(showPassword === 'password' ? 'text' : 'password')}>
+                  <InputField className="font-sans pr-0" id={field.name} type={showPassword} placeholder="Contraseña" value={field.state.value} onChangeText={field.handleChange} />
+                  <TouchableOpacity className="pl-1 pr-2" onPress={() => setShowPassword(showPassword === 'password' ? 'text' : 'password')}>
                     <InputIcon as={showPassword === 'password' ? EyeIcon : EyeOffIcon} />
                   </TouchableOpacity>
                 </Input>
@@ -101,10 +101,9 @@ export default function SignUpScreen() {
             );
           }}
         />
-        <Button className="my-4 w-full" size="md" onPress={signInForm.handleSubmit}>
-          <ButtonText className="font-bold text-typography-500">Continuar</ButtonText>
+        <Button className="my-4 w-full" onPress={signInForm.handleSubmit}>
+          <ButtonText className="font-bold">Continuar</ButtonText>
         </Button>
-
         <Text>
           ¿No tienes una cuenta?&nbsp;
           <Link className="text-typography-500 underline" href="/(auth)/sign-up">

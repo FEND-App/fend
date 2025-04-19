@@ -143,8 +143,8 @@ export default function SignUpScreen() {
         name="email"
         children={(field) => {
           return (
-            <VStack className="mt-4">
-              <Input className="w-full">
+            <VStack className="mt-4 w-full">
+              <Input>
                 <InputSlot className="pl-2">
                   <InputIcon as={MailIcon} />
                 </InputSlot>
@@ -161,13 +161,13 @@ export default function SignUpScreen() {
         name="password"
         children={(field) => {
           return (
-            <VStack className="mt-4">
-              <Input className="w-full rounded-md">
+            <VStack className="mt-4 w-full">
+              <Input>
                 <InputSlot className="pl-2">
                   <InputIcon as={LockIcon} />
                 </InputSlot>
-                <InputField className="font-sans" id={field.name} type={showPassword} placeholder="Contraseña" value={field.state.value} onChangeText={field.handleChange} />
-                <TouchableOpacity className="mx-2" onPress={() => setShowPassword(showPassword === 'password' ? 'text' : 'password')}>
+                <InputField className="font-sans pr-0" id={field.name} type={showPassword} placeholder="Contraseña" value={field.state.value} onChangeText={field.handleChange} />
+                <TouchableOpacity className="pl-1 pr-2" onPress={() => setShowPassword(showPassword === 'password' ? 'text' : 'password')}>
                   <InputIcon as={showPassword === 'password' ? EyeIcon : EyeOffIcon} />
                 </TouchableOpacity>
               </Input>
@@ -192,13 +192,13 @@ export default function SignUpScreen() {
         }}
         children={(field) => {
           return (
-            <VStack className="mt-4">
-              <Input className="w-full rounded-md">
+            <VStack className="mt-4 w-full">
+              <Input>
                 <InputSlot className="pl-2">
                   <InputIcon as={LockIcon} />
                 </InputSlot>
-                <InputField className="font-sans" id={field.name} type={showPasswordConfirm} placeholder="Confirma tu contraseña" value={field.state.value} onChangeText={field.handleChange} />
-                <TouchableOpacity className="mx-2" onPress={() => setShowPasswordConfirm(showPasswordConfirm === 'password' ? 'text' : 'password')}>
+                <InputField className="font-sans pr-0" id={field.name} type={showPasswordConfirm} placeholder="Confirma tu contraseña" value={field.state.value} onChangeText={field.handleChange} />
+                <TouchableOpacity className="pl-1 pr-2" onPress={() => setShowPasswordConfirm(showPasswordConfirm === 'password' ? 'text' : 'password')}>
                   <InputIcon as={showPasswordConfirm === 'password' ? EyeIcon : EyeOffIcon} />
                 </TouchableOpacity>
               </Input>
@@ -212,9 +212,12 @@ export default function SignUpScreen() {
       <Button action="primary" className="my-4 w-full" onPress={signUpForm.handleSubmit}>
         <ButtonText>Continuar</ButtonText>
       </Button>
-      <Link className="mt-6 font-semibold text-primary-600" href="/(auth)/sign-in">
-        ¿Ya tienes una cuenta?
-      </Link>
+      <Text>
+        ¿Ya tienes una cuenta?&nbsp;
+        <Link className="text-typography-500 underline" href="/(auth)/sign-in">
+          Inicia Sesión
+        </Link>
+      </Text>
     </VStack >
   );
 }
