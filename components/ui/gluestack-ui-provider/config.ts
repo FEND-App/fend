@@ -95,17 +95,17 @@ export const config = {
     '--color-info-950': '#030607',
 
     /* Typography */
-    '--color-typography-50': '#ebebff',
-    '--color-typography-100': '#d2d2fe',
-    '--color-typography-200': '#a6a4fe',
-    '--color-typography-300': '#7e7cfd',
-    '--color-typography-400': '#524ffd',
-    '--color-typography-500': '#2522fc',
-    '--color-typography-600': '#0703e2',
-    '--color-typography-700': '#0502ab',
-    '--color-typography-800': '#03026f',
-    '--color-typography-900': '#020137',
-    '--color-typography-950': '#01001e',
+    '--color-typography-50': '#e1eef5',
+    '--color-typography-100': '#bedce9',
+    '--color-typography-200': '#81bad4',
+    '--color-typography-300': '#4197be',
+    '--color-typography-400': '#2b637e',
+    '--color-typography-500': '#15313e',
+    '--color-typography-600': '#112732',
+    '--color-typography-700': '#0d1e26',
+    '--color-typography-800': '#09151b',
+    '--color-typography-900': '#04090b',
+    '--color-typography-950': '#030608',
 
     /* Outline */
     '--color-outline-0': '253 254 254',
