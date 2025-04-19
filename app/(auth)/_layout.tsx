@@ -1,18 +1,18 @@
 import { Redirect, Slot } from "expo-router";
+import { useAuth } from "@clerk/clerk-expo";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { Image } from "@/components/ui/image";
 import { Heading } from "@/components/ui/heading";
 import { VStack } from "@/components/ui/vstack";
-import { useAuth } from "@clerk/clerk-expo";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { View } from "@/components/Themed";
 
 export default function AuthLayout() {
-  const { isSignedIn } = useAuth();
   const insets = useSafeAreaInsets();
+  const { isSignedIn } = useAuth();
 
   if (isSignedIn)
-    <Redirect href="/" />
+    return <Redirect href="/(home)" />
 
   return (
     <View className="flex-1">
