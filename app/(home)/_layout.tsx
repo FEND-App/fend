@@ -11,8 +11,8 @@ export default function HomeLayout() {
   const insets = useSafeAreaInsets();
   const theme = useColorScheme();
 
-  const backgroundColor = theme === 'light' ? "#15313e" : "#d9dbdb";
-  const color = theme === 'dark' ? "#15313e" : "#d9dbdb";
+  const backgroundColor = theme === 'dark' ? "#15313e" : "#d9dbdb";
+  const color = theme === 'light' ? "#15313e" : "#d9dbdb";
 
   const { isSignedIn } = useAuth();
 
