@@ -37,14 +37,12 @@ export default function SignUpScreen() {
       onChange: signUpFormSchema,
     },
     onSubmit: async ({ value }) => {
-      console.log("Triggered onSubmit!");
       onSignUpPress(value.email, value.password);
     },
   });
 
   // Handle submission of sign-up form
   const onSignUpPress = async (emailAddress: string, password: string) => {
-    console.log("Triggered onSunmit!")
     if (!isLoaded) return
 
     // Start sign-up process using email and password provided
@@ -89,7 +87,7 @@ export default function SignUpScreen() {
       // and redirect the user
       if (signUpAttempt.status === 'complete') {
         await setActive({ session: signUpAttempt.createdSessionId })
-        router.replace('/')
+        router.replace('/(home)')
       } else {
         // If the status is not complete, check why. User may need to
         // complete further steps.
@@ -113,11 +111,10 @@ export default function SignUpScreen() {
             return (
               <VStack>
                 <Text>Ingersa el código de verificación</Text>
-                <Input>
+                <Input className="my-8">
                   <InputField id={field.name} type="text" value={field.state.value} onChangeText={field.handleChange} />
                 </Input>
                 {field.state.meta.errors ? (
-                  // {field.state.meta.errors.forEach((error) => <Text>{error}</Text>}
                   <Text>{field.state.meta.errors.join(', ')}</Text>
                 ) : null}
                 <Button action="primary" className="my-4 w-full" onPress={(e) => {
