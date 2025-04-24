@@ -30,7 +30,10 @@ export default function Home() {
       <MainHeader />
       <View className="mt-4">
         <Text>Bienvenido de vuelta, {user?.fullName}!</Text>
-        <Button className="mt-4" onPress={() => { router.push('/(home)/(invite)/new') }} action="primary">
+        <Button className="mt-4" onPress={() => router.push('/(home)/calendar/addevent')} action="primary">
+          <ButtonText>Nueva Evento</ButtonText>
+        </Button>
+        <Button className="mt-4" onPress={() => router.push('/(home)/invite')} action="primary">
           <ButtonText>Nueva Invitación</ButtonText>
         </Button>
         <Button className="mt-4" onPress={() => handleSignOut()} action="primary">
