@@ -1,4 +1,6 @@
 import { useSignIn } from "@clerk/clerk-expo";
+import { ClerkAPIError } from "@clerk/types";
+import { isClerkAPIResponseError } from "@clerk/clerk-expo";
 import { useForm } from "@tanstack/react-form";
 import { Link, useRouter } from "expo-router";
 import { z } from "zod";
@@ -11,7 +13,7 @@ import { Text } from "@/components/Themed";
 import { Heading } from "@/components/ui/heading";
 import { EyeIcon, EyeOffIcon, LockIcon, MailIcon } from "@/components/ui/icon";
 import { useState } from "react";
-import { TouchableOpacity } from "react-native";
+import { FlatList, TouchableOpacity } from "react-native";
 
 const signInFormSchema = z.object({
   email: z.string().email(),
@@ -21,6 +23,7 @@ const signInFormSchema = z.object({
 export default function SignUpScreen() {
   const [showPassword, setShowPassword] = useState<'password' | 'text' | undefined>('password');
   const { signIn, setActive, isLoaded } = useSignIn();
+  const [errors, setErrors] = useState<ClerkAPIError[]>();
   const router = useRouter();
 
   // Sign-up form
@@ -59,6 +62,7 @@ export default function SignUpScreen() {
     } catch (err) {
       // See https://clerk.com/docs/custom-flows/error-handling
       // for more info on error handling
+      if (isClerkAPIResponseError(err)) setErrors(err.errors)
       console.error(JSON.stringify(err, null, 2))
     }
   }
@@ -101,6 +105,12 @@ export default function SignUpScreen() {
             );
           }}
         />
+        {errors &&
+          <FlatList
+            data={errors}
+            renderItem={(error) => <Text className="text-red-500">{error.item.longMessage}</Text>}
+          />
+        }
         <Button className="my-4 w-full" onPress={signInForm.handleSubmit}>
           <ButtonText className="font-bold">Continuar</ButtonText>
         </Button>
