@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "FEND",
-    "slug": "fend-residents",
+    "slug": "fend",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -9,7 +9,11 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.fendapp.fend",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -19,7 +23,8 @@
       "permissions": [
         "android.permission.CAMERA",
         "android.permission.RECORD_AUDIO"
-      ]
+      ],
+      "package": "com.fendapp.fend"
     },
     "web": {
       "bundler": "metro",
@@ -55,9 +60,9 @@
         "origin": false
       },
       "eas": {
-        "projectId": "398e8aa0-3e99-4d41-8d21-c9983854fb67"
+        "projectId": "ebec569a-d781-4fdf-b3dc-a2294b32d57e"
       }
     },
-    "owner": "fend"
+    "owner": "fend-app"
   }
 }
