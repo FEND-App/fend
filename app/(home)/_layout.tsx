@@ -3,6 +3,7 @@ import { useColorScheme } from 'react-native';
 
 import HomeIcon from "@/assets/Icons/Home";
 import QRCodeIcon from "@/assets/Icons/QRCode";
+import CalendarIcon from '@/assets/Icons/Calendar';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useAuth } from '@clerk/clerk-expo';
 import { Redirect } from 'expo-router';
@@ -32,7 +33,9 @@ export default function HomeLayout() {
       animation: "shift",
       tabBarStyle: {
         backgroundColor: backgroundColor,
-        paddingTop: 12
+        paddingTop: 12,
+        paddingBottom: 12,
+        height: 64
       },
       sceneStyle: {
         paddingTop: insets.top,
@@ -50,15 +53,39 @@ export default function HomeLayout() {
         name='scan'
         options={{
           title: "Scan",
+          href: null,
           animation: "none",
           tabBarIcon: () => <QRCodeIcon {...iconProps} />
         }}
       />
       <Tabs.Screen
-        name='(invite)/new'
+        name='access/index'
         options={{
-          title: 'new_invite',
-          href: null
+          title: 'Show Access Credential',
+          tabBarIcon: () => <QRCodeIcon {...iconProps} />
+        }}
+      />
+      <Tabs.Screen
+        name='calendar'
+        options={{
+          title: 'Calendar',
+          tabBarIcon: () => <CalendarIcon {...iconProps} />
+        }}
+      />
+      <Tabs.Screen
+        name='invite'
+        options={{
+          title: 'Calendar',
+          href: null,
+          tabBarIcon: () => <CalendarIcon {...iconProps} />
+        }}
+      />
+      <Tabs.Screen
+        name='invite/success'
+        options={{
+          title: 'Calendar',
+          href: null,
+          tabBarIcon: () => <CalendarIcon {...iconProps} />
         }}
       />
     </Tabs>
